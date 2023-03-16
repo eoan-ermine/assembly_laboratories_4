@@ -1,13 +1,14 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
 extern "C" int IntegerLogical_(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 
-extern "C" unsigned int g_Val1 = 0;
+extern "C" unsigned int _g_Val1 = 0;
 
 unsigned int IntegerLogical(unsigned int a, unsigned int b, unsigned int c, unsigned int d) {
-	return (((a & b) | c) ^ d) + g_Val1;
+	return (((a & b) | c) ^ d) + _g_Val1;
 }
 
 static void PrintResult(
@@ -17,7 +18,7 @@ static void PrintResult(
 ) {
 	cout << msg << '\n';
 
-	const int width = 8;
+	const int w = 8;
 	cout << setfill('0');
 
 	cout << "a = 0x" << hex << setw(w) << a << " (" << dec << a << ')' << '\n';
@@ -37,14 +38,14 @@ static void PrintResult(
 int main() {
 	{
 		unsigned int a = 0x00223344, b = 0x00775544, c = 0x00555555, d = 0x00998877;
-		g_Val1 = 7;
+		_g_Val1 = 7;
 		unsigned int r1 = IntegerLogical(a, b, c, d), r2 = IntegerLogical_(a, b, c, d);
-		PrintResult("Пример 1", a, b, c, d, g_Val1, r1, r2);
+		PrintResult("Пример 1", a, b, c, d, _g_Val1, r1, r2);
 	}
 	{
 		unsigned int a = 0x70987655, b = 0x55555555, c = 0xAAAAAAAA, d = 0x12345678;
-		g_Val1 = 23;
+		_g_Val1 = 23;
 		unsigned int r1 = IntegerLogical(a, b, c, d), r2 = IntegerLogical_(a, b, c, d);
-		PrintResult("Пример 2", a, b, c, d, g_Val1, r1, r2);
+		PrintResult("Пример 2", a, b, c, d, _g_Val1, r1, r2);
 	}
 }

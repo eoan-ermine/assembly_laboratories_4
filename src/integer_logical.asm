@@ -1,4 +1,5 @@
 global IntegerLogical_
+extern _g_Val1
 
 IntegerLogical_:
     ; edi for 1st argument, esi for 2nd argument
@@ -8,5 +9,6 @@ IntegerLogical_:
     and eax, esi ; eax = a & b
     or eax, edx ; eax = (a & b) | c
     xor eax, edx ; eax = ((a & b) | c) ^ d
-    add eax, [g_Val1] ; eax = (((a & b) | c) ^ d) + g_Val1
+    add eax, [_g_Val1] ; eax = (((a & b) | c) ^ d) + g_Val1
+
     ret
