@@ -8,7 +8,7 @@ IntegerLogical_:
     mov eax, edi
     and eax, esi ; eax = a & b
     or eax, edx ; eax = (a & b) | c
-    xor eax, edx ; eax = ((a & b) | c) ^ d
+    xor eax, ecx ; eax = ((a & b) | c) ^ d
     add eax, [_g_Val1] ; eax = (((a & b) | c) ^ d) + g_Val1
 
     ret
