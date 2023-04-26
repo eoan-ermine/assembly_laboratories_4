@@ -8,7 +8,15 @@ extern "C" int IntegerLogical_(unsigned int a, unsigned int b, unsigned int c, u
 extern "C" unsigned int _g_Val1 = 0;
 
 unsigned int IntegerLogical(unsigned int a, unsigned int b, unsigned int c, unsigned int d) {
-	return (((a & b) | c) ^ d) + _g_Val1;
+	int t1 = a & b;
+	int t2 = t1 | c;
+	int t3 = t2 ^ d;
+
+	std::cout << "t1 = " << oct << t1 << '\n';
+	std::cout << "t2 = " << oct << t2 << '\n';
+	std::cout << "t3 = " << oct << t3 << '\n';
+
+	return t3 + _g_Val1;
 }
 
 static void PrintResult(
@@ -21,14 +29,14 @@ static void PrintResult(
 	const int w = 8;
 	cout << setfill('0');
 
-	cout << "a = 0x" << hex << setw(w) << a << " (" << dec << a << ')' << '\n';
-	cout << "b = 0x" << hex << setw(w) << b << " (" << dec << b << ')' << '\n';
-	cout << "c = 0x" << hex << setw(w) << c << " (" << dec << c << ')' << '\n';
-	cout << "d = 0x" << hex << setw(w) << d << " (" << dec << d << ')' << '\n';
+	cout << "a = " << oct << setw(w) << a << " (" << dec << a << ')' << '\n';
+	cout << "b = " << oct << setw(w) << b << " (" << dec << b << ')' << '\n';
+	cout << "c = " << oct << setw(w) << c << " (" << dec << c << ')' << '\n';
+	cout << "d = " << oct << setw(w) << d << " (" << dec << d << ')' << '\n';
 
-	cout << "gVal = 0x" << hex << setw(w) << gVal << " (" << dec << gVal << ')' << '\n';
-	cout << "result_1 = 0x" << hex << setw(w) << result_1 << " (" << dec << result_1 << ')' << '\n';
-	cout << "result_2 = 0x" << hex << setw(w) << result_2 << " (" << dec << result_2 << ')' << '\n';
+	cout << "gVal = " << oct << setw(w) << gVal << " (" << dec << gVal << ')' << '\n';
+	cout << "result_1 = " << oct << setw(w) << result_1 << " (" << dec << result_1 << ')' << '\n';
+	cout << "result_2 = " << oct << setw(w) << result_2 << " (" << dec << result_2 << ')' << '\n';
 
 	if (result_1 != result_2) {
 		cout << "Ошибка сравнения" << '\n';
